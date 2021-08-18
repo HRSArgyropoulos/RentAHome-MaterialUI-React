@@ -1,5 +1,14 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  list-style: none;
+}
+
 .App {
   text-align: center;
+  font-family: 'Poppins', sans-serif;
 }
 
 .App-logo {
@@ -35,4 +44,11 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+/* General */
+
+a {
+  text-decoration: none;
+  color: black;
 }
