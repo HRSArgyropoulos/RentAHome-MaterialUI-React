@@ -15,19 +15,7 @@ function App() {
           <Navbar />
           <Switch>
             <Route exact path="/">
-              <header className="App-header">
-                <img src={logo} className="App-logo" alt="logo" />
-                <p>
-                  Edit <code>src/App.js</code> and save to reload.
-                </p>
-                <a
-                  className="App-link"
-                  href="https://reactjs.org"
-                  target="_blank"
-                  rel="noopener noreferrer">
-                  Learn React
-                </a>
-              </header>
+              Home
             </Route>
             <Route path="/to-rent">To Rent</Route>
             <Route path="/to-host">To Host</Route>
