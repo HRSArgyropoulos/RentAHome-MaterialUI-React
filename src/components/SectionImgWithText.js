@@ -8,7 +8,7 @@ const useStyles = makeStyles({
   },
   sectionImgWithText: {
     width: '85%',
-    margin: '2rem auto 4rem auto',
+    margin: '2rem auto 8rem auto',
   },
   textContent: {
     textAlign: 'left',

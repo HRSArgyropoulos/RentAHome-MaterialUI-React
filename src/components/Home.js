@@ -33,7 +33,7 @@ const Home = () => {
       <SectionImgWithText
         imgLocation="right"
         imgSrc="home1"
-        title="This is a title">
+        title="Stay in your dream apartment">
         On the other hand, we denounce with righteous indignation and
         dislike men who are so beguiled and demoralized by the charms
         of pleasure of the moment, so blinded by desire, that they
@@ -41,7 +41,23 @@ const Home = () => {
         and equal blame belongs to those who fail in their duty
         through weakness of will, which is the same as saying through
         shrinking from toil and pain. These cases are perfectly simple
-        and easy to distinguish.
+        and easy to distinguish. Sed vehicula congue lacus, quis
+        finibus risus ornare nec. Donec iaculis velit ac malesuada
+        varius.
+      </SectionImgWithText>
+      <SectionImgWithText
+        imgLocation="left"
+        imgSrc="home2"
+        title="You do not have to worry about extra costs">
+        Integer euismod ac urna nec vulputate. Nulla varius sed nisl
+        id pharetra. Quisque sed mauris vel arcu blandit pulvinar
+        vitae eget diam. Vivamus vitae dolor molestie erat tempus
+        viverra non eu tortor. Nullam luctus fermentum velit et
+        molestie. Sed non sollicitudin nulla. Quisque at auctor ex,
+        quis sodales velit. Praesent commodo, massa id posuere auctor,
+        neque metus volutpat urna, eget bibendum risus mi nec lectus.
+        Nullam mattis efficitur condimentum. Pellentesque in dignissim
+        libero.
       </SectionImgWithText>
     </>
   );
