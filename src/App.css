@@ -52,3 +52,7 @@ a {
   text-decoration: none;
   color: black;
 }
+
+.activeMenu {
+  text-decoration: 2px black underline;
+}
