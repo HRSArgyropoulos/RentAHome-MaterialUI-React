@@ -6,6 +6,13 @@
   list-style: none;
 }
 
+h2 {
+  margin: 2.5rem 0;
+}
+p {
+  margin: 0.6em 0;
+}
+
 .App {
   text-align: center;
   font-family: 'Poppins', sans-serif;
@@ -55,4 +62,8 @@ a {
 
 .activeMenu {
   text-decoration: 2px black underline;
+}
+
+.MuiButton-label a {
+  color: white;
 }

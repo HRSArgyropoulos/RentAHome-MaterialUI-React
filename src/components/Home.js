@@ -3,6 +3,7 @@ import backgroundMain from '../img/livingRoom.jpg';
 import { makeStyles } from '@material-ui/core';
 import SectionImgWithText from './SectionImgWithText';
 import ApartmentsOverviewImageGallery from './ApartmentsOverviewImageGallery';
+import BookApartmentRedirect from './BookApartmentRedirect';
 
 const useStyles = makeStyles({
   backgroundImg: {
@@ -61,6 +62,7 @@ const Home = () => {
         libero.
       </SectionImgWithText>
       <ApartmentsOverviewImageGallery />
+      <BookApartmentRedirect />
     </>
   );
 };
