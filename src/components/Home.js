@@ -2,6 +2,7 @@ import React from 'react';
 import backgroundMain from '../img/livingRoom.jpg';
 import { makeStyles } from '@material-ui/core';
 import SectionImgWithText from './SectionImgWithText';
+import ApartmentsOverviewImageGallery from './ApartmentsOverviewImageGallery';
 
 const useStyles = makeStyles({
   backgroundImg: {
@@ -59,6 +60,7 @@ const Home = () => {
         Nullam mattis efficitur condimentum. Pellentesque in dignissim
         libero.
       </SectionImgWithText>
+      <ApartmentsOverviewImageGallery />
     </>
   );
 };
