@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import {
   BrowserRouter as Router,
@@ -6,6 +5,7 @@ import {
   Route,
 } from 'react-router-dom';
 import Navbar from './components/Navbar';
+import Home from './components/Home';
 
 function App() {
   return (
@@ -15,7 +15,7 @@ function App() {
           <Navbar />
           <Switch>
             <Route exact path="/">
-              Home
+              <Home />
             </Route>
             <Route path="/to-rent">To Rent</Route>
             <Route path="/to-host">To Host</Route>

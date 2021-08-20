@@ -12,11 +12,11 @@ const useStyles = makeStyles({
     margin: '0 auto',
     alignItems: 'center',
     listStyle: 'none',
-    padding: '1rem',
+    padding: '0.5rem 0',
     fontFamily: 'Righteous, cursive',
     fontSize: '1.1em',
     '& li': {
-      padding: '1rem',
+      padding: '0.5rem 1rem',
     },
     '& img': {
       width: '45px',
@@ -43,16 +43,24 @@ const Navbar = () => {
         <li>
           <ul className={classes.navlinks}>
             <li>
-              <NavLink to="/">Home</NavLink>
+              <NavLink exact to="/" activeClassName="activeMenu">
+                Home
+              </NavLink>
             </li>
             <li>
-              <NavLink to="/to-rent">Homes to rent</NavLink>
+              <NavLink to="/to-rent" activeClassName="activeMenu">
+                Homes to rent
+              </NavLink>
             </li>
             <li>
-              <NavLink to="/to-host">Host your home</NavLink>
+              <NavLink to="/to-host" activeClassName="activeMenu">
+                Host your home
+              </NavLink>
             </li>
             <li>
-              <NavLink to="/about">About</NavLink>
+              <NavLink to="/about" activeClassName="activeMenu">
+                About
+              </NavLink>
             </li>
           </ul>
         </li>
