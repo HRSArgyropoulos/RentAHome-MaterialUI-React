@@ -1,6 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core';
 import BookingForm from './BookingForm';
+import BookingResults from './BookingResults';
 
 const useStyles = makeStyles({
   root: {
@@ -13,10 +14,13 @@ const useStyles = makeStyles({
 const Booking = () => {
   const classes = useStyles();
   return (
-    <div className={classes.root}>
-      <h2>Book your stay</h2>
-      <BookingForm />
-    </div>
+    <>
+      <div className={classes.root}>
+        <h2>Book your stay</h2>
+        <BookingForm />
+      </div>
+      <BookingResults />
+    </>
   );
 };
 

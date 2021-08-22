@@ -3,15 +3,10 @@ import {
   makeStyles,
   TextField,
   InputAdornment,
-  Typography,
-  Slider,
-  Select,
-  FormControl,
-  InputLabel,
-  MenuItem,
   Button,
 } from '@material-ui/core';
 import HotelIcon from '@material-ui/icons/Hotel';
+import useStore from '../store';
 
 const useStyles = makeStyles((theme) => ({
   form: {
@@ -28,39 +23,43 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const marks = [
-  {
-    value: 0,
-    label: '0€',
-  },
-  {
-    value: 40,
-    label: '40€',
-  },
-  {
-    value: 100,
-    label: '120€',
-  },
-  {
-    value: 160,
-    label: '160€',
-  },
-  {
-    value: 500,
-    label: '500€',
-  },
-];
-
 const BookingForm = () => {
   const classes = useStyles();
-  const [priceRange, setPriceRange] = useState([20, 120]);
-  const [persons, setPersons] = useState(1);
-  const [apartmentStyle, setApartmentStyle] = useState('eco');
+
+  /* Form state */
+  const [searchState, setSearchState] = useState({
+    location: '',
+    checkIn: '',
+    checkOut: '',
+  });
+
+  /* Form state change */
+  const handleChange = (e) => {
+    setSearchState({
+      ...searchState,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  /* Submit form action to update store */
+  const submitBookingSearch = useStore(
+    (state) => state.submitBookingSearch
+  );
+
+  /* Handle submit button -> call action */
+  const handleSubmitBookingForm = (e) => {
+    e.preventDefault();
+    console.log(searchState);
+    submitBookingSearch(searchState);
+  };
+
   return (
     <form className={classes.form} noValidate autoComplete="off">
       <TextField
         id="location"
         label="Location"
+        name="location"
+        onChange={handleChange}
         placeholder="Where do you want to stay?"
         required
         InputProps={{
@@ -76,8 +75,10 @@ const BookingForm = () => {
         id="check-in"
         label="Check In"
         type="date"
+        name="checkIn"
+        onChange={handleChange}
         required
-        defaultValue="2021-09-21"
+        value={searchState.checkIn}
         InputLabelProps={{
           shrink: true,
         }}
@@ -86,54 +87,19 @@ const BookingForm = () => {
         id="check-out"
         label="Check Out"
         type="date"
+        name="checkOut"
+        onChange={handleChange}
         required
-        defaultValue="2021-09-25"
+        value={searchState.checkOut}
         InputLabelProps={{
           shrink: true,
         }}
       />
-      <FormControl>
-        <InputLabel id="persons" required>
-          Persons
-        </InputLabel>
-        <Select
-          labelId="persons"
-          id="persons"
-          value={persons}
-          onChange={(e) => setPersons(e.target.value)}>
-          <MenuItem value={1}>1</MenuItem>
-          <MenuItem value={2}>2</MenuItem>
-          <MenuItem value={3}>3</MenuItem>
-          <MenuItem value={4}>4+</MenuItem>
-        </Select>
-      </FormControl>
-      <FormControl>
-        <InputLabel id="apartment-style">Apartment Style</InputLabel>
-        <Select
-          labelId="apartment-style"
-          id="apartment-style"
-          value={apartmentStyle}
-          onChange={(e) => setApartmentStyle(e.target.value)}>
-          <MenuItem value="eco">Economy</MenuItem>
-          <MenuItem value="low">Standard</MenuItem>
-          <MenuItem value="mid">Suite</MenuItem>
-          <MenuItem value="high">Mansion</MenuItem>
-        </Select>
-      </FormControl>
-      <Typography gutterBottom>Price Range</Typography>
-      <Slider
-        value={priceRange}
-        onChange={(e, newValue) => setPriceRange(newValue)}
-        valueLabelDisplay="auto"
-        aria-labelledby="range-slider"
-        getAriaValueText={(priceRange) => `${priceRange} €`}
-        max={500}
-        marks={marks}
-      />
       <Button
         color="primary"
         variant="contained"
-        onClick={() => console.log('submit')}>
+        type="submit"
+        onClick={handleSubmitBookingForm}>
         Search
       </Button>
     </form>
