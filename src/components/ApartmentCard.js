@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, Grid, Button } from '@material-ui/core';
+import { Card, Grid, Button, Avatar } from '@material-ui/core';
 import PersonIcon from '@material-ui/icons/Person';
 import BathtubIcon from '@material-ui/icons/Bathtub';
 import SquareFootIcon from '@material-ui/icons/SquareFoot';
@@ -70,11 +70,29 @@ const ApartmentCard = (props) => {
                 <span>{apartmentData.beds} Bed(s)</span>
               </Grid>
             </Grid>
-            {/* button */}
-            <Grid item className={classes.cardDetailSection}>
-              <Button variant="contained" color="primary">
-                Book Now
-              </Button>
+            {/* button / avatar */}
+            <Grid
+              item
+              container
+              className={classes.cardDetailSection}>
+              <Grid item>
+                <Avatar
+                  src={
+                    process.env.PUBLIC_URL +
+                    `img/hosts/` +
+                    apartmentData.host.id +
+                    '.jpg'
+                  }
+                  alt={apartmentData.host.name}
+                  style={{ marginRight: '1rem' }}>
+                  {apartmentData.host.name}
+                </Avatar>
+              </Grid>
+              <Grid item>
+                <Button variant="contained" color="primary">
+                  Book Now
+                </Button>
+              </Grid>
             </Grid>
           </Grid>
         </Grid>
