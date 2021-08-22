@@ -1,13 +1,13 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core';
+import { makeStyles, Grid } from '@material-ui/core';
 import BookingForm from './BookingForm';
 import BookingResults from './BookingResults';
+import BookingFilters from './BookingFilters';
 
 const useStyles = makeStyles({
   root: {
     backgroundColor: 'rgba(241, 231, 254, 1)',
-    height: 'calc(100vh - 120px)',
-    minHeight: '500px',
+    padding: '5rem 0',
   },
 });
 
@@ -16,10 +16,11 @@ const Booking = () => {
   return (
     <>
       <div className={classes.root}>
-        <h2>Book your stay</h2>
+        <h2 style={{ padding: 0 }}>Book your stay</h2>
         <BookingForm />
       </div>
       <BookingResults />
+      <BookingFilters />
     </>
   );
 };

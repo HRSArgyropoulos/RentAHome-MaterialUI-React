@@ -14,8 +14,8 @@ const bookingStore = (set) => ({
   },
   filterValueChange: (change) =>
     set((state) => ({
-      bookingOptions: {
-        ...state.bookingOptions,
+      bookingFilters: {
+        ...state.bookingFilters,
         [change.name]: change.value,
       },
     })),

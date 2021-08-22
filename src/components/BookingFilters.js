@@ -1,15 +1,12 @@
 import React from 'react';
 import {
   makeStyles,
-  TextField,
-  InputAdornment,
   Typography,
   Slider,
   Select,
   FormControl,
   InputLabel,
   MenuItem,
-  Button,
 } from '@material-ui/core';
 import useStore from '../store';
 
@@ -23,12 +20,12 @@ const marks = [
     label: '40€',
   },
   {
-    value: 100,
+    value: 120,
     label: '120€',
   },
   {
-    value: 160,
-    label: '160€',
+    value: 250,
+    label: '250€',
   },
   {
     value: 500,
@@ -54,15 +51,19 @@ const useStyles = makeStyles((theme) => ({
 const BookingFilters = () => {
   const classes = useStyles();
 
-  const updateBookingOptions = useStore(
-    (state) => state.handleBookingFormChange
+  const updateBookingFilters = useStore(
+    (state) => state.filterValueChange
   );
 
-  const getBookingOptions = useStore((state) => state.bookingOptions);
+  const bookingFilters = useStore((state) => state.bookingFilters);
 
   const handleFormChange = (e) => {
     const { name, value } = e.target;
-    updateBookingOptions({ name, value });
+    updateBookingFilters({ name, value });
+  };
+
+  const handleSliderChange = (e, newValue) => {
+    updateBookingFilters({ name: 'priceRange', value: newValue });
   };
 
   return (
@@ -74,7 +75,7 @@ const BookingFilters = () => {
         <Select
           labelId="persons"
           id="persons"
-          value={getBookingOptions.persons}
+          value={bookingFilters.persons}
           name="persons"
           onChange={handleFormChange}>
           <MenuItem value={1}>1</MenuItem>
@@ -88,8 +89,9 @@ const BookingFilters = () => {
         <Select
           labelId="apartment-style"
           id="apartment-style"
-          value={apartmentStyle}
-          onChange={(e) => setApartmentStyle(e.target.value)}>
+          value={bookingFilters.apartmentStyle}
+          name="apartmentStyle"
+          onChange={handleFormChange}>
           <MenuItem value="eco">Economy</MenuItem>
           <MenuItem value="low">Standard</MenuItem>
           <MenuItem value="mid">Suite</MenuItem>
@@ -98,8 +100,9 @@ const BookingFilters = () => {
       </FormControl>
       <Typography gutterBottom>Price Range</Typography>
       <Slider
-        value={priceRange}
-        onChange={(e, newValue) => setPriceRange(newValue)}
+        name="priceRange"
+        value={bookingFilters.priceRange}
+        onChangeCommitted={handleSliderChange}
         valueLabelDisplay="auto"
         aria-labelledby="range-slider"
         getAriaValueText={(priceRange) => `${priceRange} €`}
