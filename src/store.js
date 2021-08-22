@@ -1,5 +1,5 @@
 import create from 'zustand';
-import { devtools } from 'zustand/middleware';
+import { devtools, persist } from 'zustand/middleware';
 
 const bookingStore = (set) => ({
   bookingFilters: {
@@ -25,6 +25,6 @@ const bookingStore = (set) => ({
     })),
 });
 
-const useStore = create(devtools(bookingStore));
+const useStore = create(persist(devtools(bookingStore)));
 
 export default useStore;

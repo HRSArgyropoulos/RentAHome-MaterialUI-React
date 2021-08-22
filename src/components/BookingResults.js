@@ -1,6 +1,7 @@
 import React from 'react';
 import useStore from '../store';
 import { makeStyles } from '@material-ui/styles';
+import ApartmentCards from './ApartmentCards';
 
 const useStyles = makeStyles({
   root: {
@@ -23,6 +24,7 @@ const useStyles = makeStyles({
     color: 'white',
     fontSize: '2em',
   },
+  apartmentsContainer: { width: '50%' },
 });
 
 const BookingResults = () => {
@@ -44,11 +46,12 @@ const BookingResults = () => {
         <h2 className={classes.headingLocation}>
           {bookingSearch.location}
         </h2>
-        <p>
-          Viewing apartments from {bookingSearch.checkIn} to{' '}
-          {bookingSearch.checkOut}
-        </p>
       </div>
+      <p>
+        Viewing apartments from {bookingSearch.checkIn} to{' '}
+        {bookingSearch.checkOut}
+      </p>
+      <ApartmentCards className={classes.apartmentsContainer} />
     </div>
   );
 };
