@@ -15,6 +15,10 @@ const useStyles = makeStyles((theme) => ({
     '& .MuiTextField-root': {
       margin: theme.spacing(1),
     },
+    '& MuiButton-root': {
+      position: 'relative',
+      bottom: 0,
+    },
   },
   input: {
     '&::placeholder': {

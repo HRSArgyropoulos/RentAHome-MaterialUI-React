@@ -7,6 +7,22 @@ const useStyles = makeStyles({
     backgroundColor: 'pink',
     minHeight: '500px',
   },
+  header: {
+    '& img': {
+      width: '100%',
+      height: '250px',
+      objectFit: 'cover',
+    },
+    position: 'relative',
+  },
+  headingLocation: {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%,-50%)',
+    color: 'white',
+    fontSize: '2em',
+  },
 });
 
 const BookingResults = () => {
@@ -15,9 +31,24 @@ const BookingResults = () => {
   const bookingFilters = useStore((state) => state.bookingFilters);
   return (
     <div className={classes.root}>
-      {bookingSearch.location}
-      {bookingFilters.priceRange} {bookingFilters.persons}{' '}
-      {bookingFilters.apartmentStyle}
+      <div className={classes.header}>
+        <img
+          src={
+            process.env.PUBLIC_URL +
+            `img/locations/` +
+            bookingSearch.location.toLowerCase() +
+            '.jpg'
+          }
+          alt={bookingSearch.location + ' apartments'}
+        />
+        <h2 className={classes.headingLocation}>
+          {bookingSearch.location}
+        </h2>
+        <p>
+          Viewing apartments from {bookingSearch.checkIn} to{' '}
+          {bookingSearch.checkOut}
+        </p>
+      </div>
     </div>
   );
 };
