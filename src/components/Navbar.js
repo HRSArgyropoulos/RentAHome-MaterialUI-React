@@ -6,6 +6,7 @@ import { Button } from '@material-ui/core';
 
 const useStyles = makeStyles({
   navbar: {
+    height: '120px',
     display: 'grid',
     gridTemplateColumns: '1fr 2fr 1fr',
     maxWidth: '1650px',
