@@ -19,6 +19,7 @@ const apartmentsData = [
     host: {
       id: '335353',
       name: 'Harry Maguire',
+      highRatedHost: true,
     },
   },
   {
@@ -36,6 +37,7 @@ const apartmentsData = [
     host: {
       id: '562343',
       name: 'John Stones',
+      highRatedHost: false,
     },
   },
 ];
