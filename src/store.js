@@ -23,6 +23,11 @@ const bookingStore = (set) => ({
     set(() => ({
       bookingSearch: bookingSearchOptions,
     })),
+  apartmentsList: [],
+  updateApartmentsList: (apartments) =>
+    set(() => ({
+      apartmentsList: apartments,
+    })),
 });
 
 const useStore = create(persist(devtools(bookingStore)));

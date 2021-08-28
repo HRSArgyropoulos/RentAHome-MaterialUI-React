@@ -55,7 +55,7 @@ const ApartmentCard = (props) => {
               className={classes.cardDetailSection}>
               <Grid item>
                 <PersonIcon />
-                <span>{apartmentData.maxPersons} Max</span>
+                <span>{apartmentData.capacity} Max</span>
               </Grid>
               <Grid item>
                 <BathtubIcon />

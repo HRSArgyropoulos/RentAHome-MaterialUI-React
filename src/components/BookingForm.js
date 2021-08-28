@@ -1,4 +1,4 @@
-import { React, useState } from 'react';
+import { React, useState, useEffect } from 'react';
 import {
   makeStyles,
   TextField,
@@ -6,6 +6,7 @@ import {
   Button,
 } from '@material-ui/core';
 import HotelIcon from '@material-ui/icons/Hotel';
+import getApartments from '../services/apartmentsSearch';
 import useStore from '../store';
 
 const useStyles = makeStyles((theme) => ({
@@ -56,6 +57,22 @@ const BookingForm = () => {
     console.log(searchState);
     submitBookingSearch(searchState);
   };
+
+  /* Fetch apartment results  */
+  const { location } = useStore((state) => state.bookingSearch);
+
+  const updateApartmentsList = useStore(
+    (state) => state.updateApartmentsList
+  );
+
+  useEffect(() => {
+    const fetchApartments = async () => {
+      const response = await getApartments(location);
+      // update global state
+      updateApartmentsList(response.data.apartments);
+    };
+    fetchApartments();
+  }, [location, updateApartmentsList]);
 
   return (
     <form className={classes.form} noValidate autoComplete="off">
