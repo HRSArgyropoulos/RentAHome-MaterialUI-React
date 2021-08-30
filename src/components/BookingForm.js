@@ -85,15 +85,14 @@ const BookingForm = () => {
       );
       // update global state
       if (!response.data.apartments.length) {
-        if (location && checkIn && checkOut && persons) {
-          updateResultsState('empty');
-        }
+        updateResultsState('empty');
       } else {
         updateApartmentsList(response.data.apartments);
         updateResultsState('data');
       }
     };
-    fetchApartments();
+    if (location && checkIn && checkOut && persons) fetchApartments();
+    else updateResultsState('idle');
   }, [
     location,
     checkIn,
