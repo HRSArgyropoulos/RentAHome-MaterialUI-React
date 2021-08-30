@@ -4,6 +4,10 @@ import {
   TextField,
   InputAdornment,
   Button,
+  FormControl,
+  InputLabel,
+  Select,
+  MenuItem,
 } from '@material-ui/core';
 import HotelIcon from '@material-ui/icons/Hotel';
 import getApartments from '../services/apartmentsSearch';
@@ -36,6 +40,7 @@ const BookingForm = () => {
     location: '',
     checkIn: '',
     checkOut: '',
+    persons: 0,
   });
 
   /* Form state change */
@@ -58,7 +63,7 @@ const BookingForm = () => {
   };
 
   /* Fetch apartment results  */
-  const { location, checkIn, checkOut } = useStore(
+  const { location, checkIn, checkOut, persons } = useStore(
     (state) => state.bookingSearch
   );
 
@@ -75,26 +80,25 @@ const BookingForm = () => {
       const response = await getApartments(
         location,
         checkIn,
-        checkOut
+        checkOut,
+        persons
       );
       // update global state
-      if (
-        !response.data.apartments.length &&
-        location &&
-        checkIn &&
-        checkOut
-      ) {
-        updateResultsState('empty');
+      if (!response.data.apartments.length) {
+        if (location && checkIn && checkOut && persons) {
+          updateResultsState('empty');
+        }
       } else {
+        updateApartmentsList(response.data.apartments);
         updateResultsState('data');
       }
-      updateApartmentsList(response.data.apartments);
     };
     fetchApartments();
   }, [
     location,
     checkIn,
     checkOut,
+    persons,
     updateApartmentsList,
     updateResultsState,
   ]);
@@ -141,6 +145,22 @@ const BookingForm = () => {
           shrink: true,
         }}
       />
+      <FormControl>
+        <InputLabel id="persons" required>
+          Persons
+        </InputLabel>
+        <Select
+          labelId="persons"
+          id="persons"
+          value={searchState.persons}
+          name="persons"
+          onChange={handleChange}>
+          <MenuItem value={1}>1</MenuItem>
+          <MenuItem value={2}>2</MenuItem>
+          <MenuItem value={3}>3</MenuItem>
+          <MenuItem value={4}>4+</MenuItem>
+        </Select>
+      </FormControl>
       <Button
         color="primary"
         variant="contained"

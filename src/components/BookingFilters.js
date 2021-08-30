@@ -75,22 +75,6 @@ const BookingFilters = () => {
       <h3>Filters</h3>
       <form className={classes.form} noValidate autoComplete="off">
         <FormControl>
-          <InputLabel id="persons" required>
-            Persons
-          </InputLabel>
-          <Select
-            labelId="persons"
-            id="persons"
-            value={bookingFilters.persons}
-            name="persons"
-            onChange={handleFormChange}>
-            <MenuItem value={1}>1</MenuItem>
-            <MenuItem value={2}>2</MenuItem>
-            <MenuItem value={3}>3</MenuItem>
-            <MenuItem value={4}>4+</MenuItem>
-          </Select>
-        </FormControl>
-        <FormControl>
           <InputLabel id="apartment-style">
             Apartment Style
           </InputLabel>
