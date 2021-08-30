@@ -12,6 +12,7 @@ const bookingStore = (set) => ({
     checkIn: '',
     checkOut: '',
   },
+  resultState: 'idle',
   filterValueChange: (change) =>
     set((state) => ({
       bookingFilters: {
@@ -27,6 +28,10 @@ const bookingStore = (set) => ({
   updateApartmentsList: (apartments) =>
     set(() => ({
       apartmentsList: apartments,
+    })),
+  updateResultsState: (resultState) =>
+    set(() => ({
+      resultsState: resultState,
     })),
 });
 

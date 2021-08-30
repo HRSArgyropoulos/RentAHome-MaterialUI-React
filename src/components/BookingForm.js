@@ -54,25 +54,50 @@ const BookingForm = () => {
   /* Handle submit button -> call action */
   const handleSubmitBookingForm = (e) => {
     e.preventDefault();
-    console.log(searchState);
     submitBookingSearch(searchState);
   };
 
   /* Fetch apartment results  */
-  const { location } = useStore((state) => state.bookingSearch);
+  const { location, checkIn, checkOut } = useStore(
+    (state) => state.bookingSearch
+  );
 
   const updateApartmentsList = useStore(
     (state) => state.updateApartmentsList
   );
 
+  const updateResultsState = useStore(
+    (state) => state.updateResultsState
+  );
+
   useEffect(() => {
     const fetchApartments = async () => {
-      const response = await getApartments(location);
+      const response = await getApartments(
+        location,
+        checkIn,
+        checkOut
+      );
       // update global state
+      if (
+        !response.data.apartments.length &&
+        location &&
+        checkIn &&
+        checkOut
+      ) {
+        updateResultsState('empty');
+      } else {
+        updateResultsState('data');
+      }
       updateApartmentsList(response.data.apartments);
     };
     fetchApartments();
-  }, [location, updateApartmentsList]);
+  }, [
+    location,
+    checkIn,
+    checkOut,
+    updateApartmentsList,
+    updateResultsState,
+  ]);
 
   return (
     <form className={classes.form} noValidate autoComplete="off">
