@@ -4,6 +4,10 @@ import {
   TextField,
   InputAdornment,
   Button,
+  FormControl,
+  InputLabel,
+  Select,
+  MenuItem,
 } from '@material-ui/core';
 import HotelIcon from '@material-ui/icons/Hotel';
 import getApartments from '../services/apartmentsSearch';
@@ -36,6 +40,7 @@ const BookingForm = () => {
     location: '',
     checkIn: '',
     checkOut: '',
+    persons: 0,
   });
 
   /* Form state change */
@@ -54,25 +59,48 @@ const BookingForm = () => {
   /* Handle submit button -> call action */
   const handleSubmitBookingForm = (e) => {
     e.preventDefault();
-    console.log(searchState);
     submitBookingSearch(searchState);
   };
 
   /* Fetch apartment results  */
-  const { location } = useStore((state) => state.bookingSearch);
+  const { location, checkIn, checkOut, persons } = useStore(
+    (state) => state.bookingSearch
+  );
 
   const updateApartmentsList = useStore(
     (state) => state.updateApartmentsList
   );
 
+  const updateResultsState = useStore(
+    (state) => state.updateResultsState
+  );
+
   useEffect(() => {
     const fetchApartments = async () => {
-      const response = await getApartments(location);
+      const response = await getApartments(
+        location,
+        checkIn,
+        checkOut,
+        persons
+      );
       // update global state
-      updateApartmentsList(response.data.apartments);
+      if (!response.data.apartments.length) {
+        updateResultsState('empty');
+      } else {
+        updateApartmentsList(response.data.apartments);
+        updateResultsState('data');
+      }
     };
-    fetchApartments();
-  }, [location, updateApartmentsList]);
+    if (location && checkIn && checkOut && persons) fetchApartments();
+    else updateResultsState('idle');
+  }, [
+    location,
+    checkIn,
+    checkOut,
+    persons,
+    updateApartmentsList,
+    updateResultsState,
+  ]);
 
   return (
     <form className={classes.form} noValidate autoComplete="off">
@@ -116,6 +144,22 @@ const BookingForm = () => {
           shrink: true,
         }}
       />
+      <FormControl>
+        <InputLabel id="persons" required>
+          Persons
+        </InputLabel>
+        <Select
+          labelId="persons"
+          id="persons"
+          value={searchState.persons}
+          name="persons"
+          onChange={handleChange}>
+          <MenuItem value={1}>1</MenuItem>
+          <MenuItem value={2}>2</MenuItem>
+          <MenuItem value={3}>3</MenuItem>
+          <MenuItem value={4}>4+</MenuItem>
+        </Select>
+      </FormControl>
       <Button
         color="primary"
         variant="contained"

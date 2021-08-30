@@ -3,7 +3,6 @@ import { devtools, persist } from 'zustand/middleware';
 
 const bookingStore = (set) => ({
   bookingFilters: {
-    persons: 1,
     apartmentStyle: '',
     priceRange: [20, 120],
   },
@@ -11,7 +10,9 @@ const bookingStore = (set) => ({
     location: '',
     checkIn: '',
     checkOut: '',
+    persons: 0,
   },
+  resultsState: 'idle',
   filterValueChange: (change) =>
     set((state) => ({
       bookingFilters: {
@@ -28,6 +29,8 @@ const bookingStore = (set) => ({
     set(() => ({
       apartmentsList: apartments,
     })),
+  updateResultsState: (resultState) =>
+    set({ resultsState: resultState }),
 });
 
 const useStore = create(persist(devtools(bookingStore)));

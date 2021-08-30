@@ -21,13 +21,15 @@ const Booking = () => {
 
   const apartmentsList = useStore((state) => state.apartmentsList);
 
+  const resultsState = useStore((state) => state.resultsState);
+
   return (
     <>
       <div className={classes.root}>
         <h2 style={{ padding: 0 }}>Book your stay</h2>
         <BookingForm />
       </div>
-      {apartmentsList.length !== 0 && (
+      {resultsState === 'data' && (
         <Grid container spacing={4} className={classes.results}>
           <Grid item md={3} xs={12}>
             <BookingFilters />
@@ -37,6 +39,7 @@ const Booking = () => {
           </Grid>
         </Grid>
       )}
+      {resultsState === 'empty' && 'No results could be found'}
     </>
   );
 };
