@@ -11,7 +11,7 @@ const bookingStore = (set) => ({
     location: '',
     checkIn: '',
     checkOut: '',
-    persons: 0,
+    persons: '',
   },
   resultsState: 'idle',
   filterValueChange: (change) =>

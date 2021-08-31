@@ -40,7 +40,7 @@ const BookingForm = () => {
     location: '',
     checkIn: '',
     checkOut: '',
-    persons: 0,
+    persons: '',
   });
 
   /* Form state change */
