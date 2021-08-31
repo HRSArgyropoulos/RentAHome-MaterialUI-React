@@ -21,7 +21,7 @@ const ApartmentCards = () => {
 
   return (
     /* List of cards (colymn) */
-    <Grid container direction="colymn" className={classes.cards}>
+    <Grid container direction="column" className={classes.cards}>
       {apartmentsData &&
         apartmentsData.map((apartment) => (
           <ApartmentCard
