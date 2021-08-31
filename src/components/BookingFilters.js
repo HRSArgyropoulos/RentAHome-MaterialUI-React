@@ -1,4 +1,4 @@
-import React from 'react';
+import { React, useEffect } from 'react';
 import {
   makeStyles,
   Typography,
@@ -55,20 +55,44 @@ const useStyles = makeStyles((theme) => ({
 const BookingFilters = () => {
   const classes = useStyles();
 
+  /* Filters state */
+  const bookingFilters = useStore((state) => state.bookingFilters);
+
   const updateBookingFilters = useStore(
     (state) => state.filterValueChange
   );
 
-  const bookingFilters = useStore((state) => state.bookingFilters);
+  /* Apartments state */
+  const apartmentsList = useStore((state) => state.apartmentsList);
 
+  const updateFilteredApartmentsList = useStore(
+    (state) => state.updateFilteredApartmentsList
+  );
+
+  /* Form handle changes -> update state on change */
   const handleFormChange = (e) => {
     const { name, value } = e.target;
     updateBookingFilters({ name, value });
   };
 
-  const handleSliderChange = (e, newValue) => {
-    updateBookingFilters({ name: 'priceRange', value: newValue });
+  const handleSliderChange = (name, newValue) => {
+    updateBookingFilters({ name, value: newValue });
   };
+
+  useEffect(() => {
+    const filteredResults = apartmentsList.filter((apartment) => {
+      if (
+        apartment.price < bookingFilters.priceRange[0] ||
+        apartment.price > bookingFilters.priceRange[1]
+      ) {
+        return false;
+      }
+      return true;
+    });
+
+    /* update filtered apartments state*/
+    updateFilteredApartmentsList(filteredResults);
+  }, [bookingFilters, apartmentsList, updateFilteredApartmentsList]);
 
   return (
     <>
@@ -94,7 +118,9 @@ const BookingFilters = () => {
         <Slider
           name="priceRange"
           value={bookingFilters.priceRange}
-          onChangeCommitted={handleSliderChange}
+          onChangeCommitted={(_, newValue) =>
+            handleSliderChange('priceRange', newValue)
+          }
           valueLabelDisplay="auto"
           aria-labelledby="range-slider"
           getAriaValueText={(priceRange) => `${priceRange} €`}

@@ -30,7 +30,7 @@ const useStyles = makeStyles({
 const BookingResults = () => {
   const classes = useStyles();
   const bookingSearch = useStore((state) => state.bookingSearch);
-  const bookingFilters = useStore((state) => state.bookingFilters);
+
   return (
     <div className={classes.root}>
       <div className={classes.header}>
