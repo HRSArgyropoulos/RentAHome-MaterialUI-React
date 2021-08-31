@@ -14,10 +14,14 @@ const useStyles = makeStyles({
 const ApartmentCards = () => {
   const classes = useStyles();
 
-  const apartmentsData = useStore((state) => state.apartmentsList);
+  /* const apartmentsData = useStore((state) => state.apartmentsList); */
+  const apartmentsData = useStore(
+    (state) => state.filteredApartmentsList
+  );
+
   return (
     /* List of cards (colymn) */
-    <Grid container direction="colymn" className={classes.cards}>
+    <Grid container direction="column" className={classes.cards}>
       {apartmentsData &&
         apartmentsData.map((apartment) => (
           <ApartmentCard

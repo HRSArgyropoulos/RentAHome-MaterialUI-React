@@ -17,6 +17,18 @@ const useStyles = makeStyles({
   },
   cardDetailSection: {
     margin: '0.6rem 0',
+    '& .MuiGrid-item': {
+      display: 'flex',
+      alignItems: 'center',
+    },
+    '& .MuiSvgIcon-root': {
+      marginRight: '0.3rem',
+    },
+  },
+  price: {
+    backgroundColor: 'rgba(213, 184, 255, 0.8)',
+    padding: '0.7rem 1.1rem',
+    borderRadius: '25px',
   },
 });
 
@@ -41,7 +53,12 @@ const ApartmentCard = (props) => {
           />
         </Grid>
         {/* Details */}
-        <Grid item md={8}>
+        <Grid
+          container
+          direction="column"
+          justifyContent="center"
+          item
+          md={8}>
           {/* 3 rows (title,options,button) */}
           <Grid container style={{ padding: '1.5rem' }}>
             {/* title */}
@@ -74,6 +91,8 @@ const ApartmentCard = (props) => {
             <Grid
               item
               container
+              alignItems="center"
+              justifyContent="space-between"
               className={classes.cardDetailSection}>
               <Grid item>
                 <Avatar
@@ -87,6 +106,9 @@ const ApartmentCard = (props) => {
                   style={{ marginRight: '1rem' }}>
                   {apartmentData.host.name}
                 </Avatar>
+              </Grid>
+              <Grid item className={classes.price}>
+                {apartmentData.price}€ / night
               </Grid>
               <Grid item>
                 <Button variant="contained" color="primary">

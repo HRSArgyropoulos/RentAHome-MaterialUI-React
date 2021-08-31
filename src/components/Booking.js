@@ -19,8 +19,6 @@ const useStyles = makeStyles({
 const Booking = () => {
   const classes = useStyles();
 
-  const apartmentsList = useStore((state) => state.apartmentsList);
-
   const resultsState = useStore((state) => state.resultsState);
 
   return (
