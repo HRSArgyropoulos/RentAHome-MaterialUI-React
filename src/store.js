@@ -37,8 +37,32 @@ const bookingStore = (set) => ({
     set(() => ({
       filteredApartmentsList: apartments,
     })),
+
+  // List apartment (host stepper)
+  hostStepper: 0,
+  forwardsStepper: () =>
+    set((state) => ({
+      hostStepper: state.hostStepper + 1,
+    })),
+  backwardsStepper: () =>
+    set((state) => ({
+      hostStepper: state.hostStepper - 1,
+    })),
+  resetStepper: () =>
+    set(() => ({
+      hostStepper: 0,
+    })),
+  /* moveStepper: (direction) =>
+    set((state) => ({
+      hostStepper:
+        direction === 'forwards'
+          ? state.hostStepper + 1
+          : direction === 'backwards'
+          ? state.hostStepper - 1
+          : 0,
+    })), */
 });
 
-const useStore = create(persist(devtools(bookingStore)));
+const useStore = create(devtools(bookingStore));
 
 export default useStore;
