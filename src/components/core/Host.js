@@ -2,6 +2,7 @@ import { React, useState } from 'react';
 import { Stepper, Step, StepLabel, Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 import useStore from '../../store';
+import StepperFormContent from '../StepperFormContent';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -10,7 +11,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const stepLabels = [
-  'Select your location',
+  'Input host details',
   'List property details',
   'Review and list',
 ];
@@ -38,7 +39,7 @@ const Host = () => {
       <div>
         {activeStep === stepLabels.length ? (
           <div>
-            'All steps completed'
+            <h3>All steps completed</h3>
             <Button
               onClick={resetStepper}
               variant="outlined"
@@ -48,6 +49,7 @@ const Host = () => {
           </div>
         ) : (
           <div>
+            <StepperFormContent index={activeStep} />
             <Button disabled={!activeStep} onClick={backStep}>
               Back
             </Button>
