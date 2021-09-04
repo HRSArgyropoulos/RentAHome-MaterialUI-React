@@ -20,6 +20,6 @@ Open [http://localhost:3100](http://localhost:3100) to view it in the browser.
 
 ________
 #### Preview
-![Gif 1](https://i.imgur.com/iCfCfku.gif)
+![Gif 1](https://i.imgur.com/CePc1hV.gif)
 ![Screenshot 1](https://i.imgur.com/Iye6nP9.png)
 ![Screenshot 2](https://i.imgur.com/RvLxW2a.png)
