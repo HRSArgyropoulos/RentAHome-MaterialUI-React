@@ -1,5 +1,5 @@
 import create from 'zustand';
-import { devtools, persist } from 'zustand/middleware';
+import { devtools /* persist */ } from 'zustand/middleware';
 
 const bookingStore = (set) => ({
   bookingFilters: {
@@ -61,6 +61,26 @@ const bookingStore = (set) => ({
           ? state.hostStepper - 1
           : 0,
     })), */
+  hostStepperForm: {
+    hostId: '',
+    hostName: '',
+    hostFound: false,
+  },
+  changeStepStatus: (step) =>
+    set((state) => ({
+      hostStepStatus: state.hostStepStatus.splice(
+        step,
+        1,
+        !state.hostStepStatus[step]
+      ),
+    })),
+  changeHostStepperInput: (change) =>
+    set((state) => ({
+      hostStepperForm: {
+        ...state.hostStepperForm,
+        [change.name]: change.value,
+      },
+    })),
 });
 
 const useStore = create(devtools(bookingStore));
