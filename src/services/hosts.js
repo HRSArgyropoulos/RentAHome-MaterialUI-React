@@ -9,7 +9,7 @@ const getHost = async (hostId) => {
 };
 
 const addHost = async (hostName) => {
-  return await axios.post({
+  return await axios.post(`${hostBaseUrl}/addHost`, {
     hostName,
   });
 };

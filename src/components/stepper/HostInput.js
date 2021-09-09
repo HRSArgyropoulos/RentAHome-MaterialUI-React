@@ -2,7 +2,7 @@ import { React, useState } from 'react';
 import { Button, Grid, TextField } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core';
 import useStore from '../../store';
-import { getHost, addHost } from '../../services/hosts';
+import { getHost } from '../../services/hosts';
 
 const useStyles = makeStyles({
   root: { width: '100%' },
