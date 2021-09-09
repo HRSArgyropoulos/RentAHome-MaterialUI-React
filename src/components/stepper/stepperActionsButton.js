@@ -9,6 +9,16 @@ const checkStepperData = (step, data) => {
         return false;
       break;
     case 1:
+      // if any empty block step
+      for (const property in data.apartment) {
+        console.log(property, data.apartment[property]);
+        if (!data.apartment[property]) {
+          return false;
+        }
+        if (property === 'availableDates') {
+          if (!data.apartment[property].length) return false;
+        }
+      }
       break;
     default:
   }

@@ -52,19 +52,20 @@ const bookingStore = (set) => ({
     set(() => ({
       hostStepper: 0,
     })),
-  /* moveStepper: (direction) =>
-    set((state) => ({
-      hostStepper:
-        direction === 'forwards'
-          ? state.hostStepper + 1
-          : direction === 'backwards'
-          ? state.hostStepper - 1
-          : 0,
-    })), */
   hostStepperForm: {
     hostId: '',
     hostName: '',
     hostFound: false,
+    apartment: {
+      title: '',
+      location: '',
+      capacity: '',
+      baths: '',
+      beds: '',
+      spacing: '',
+      price: '',
+      availableDates: [],
+    },
   },
   changeStepStatus: (step) =>
     set((state) => ({
@@ -79,6 +80,16 @@ const bookingStore = (set) => ({
       hostStepperForm: {
         ...state.hostStepperForm,
         [change.name]: change.value,
+      },
+    })),
+  changeFormApartment: (field) =>
+    set((state) => ({
+      hostStepperForm: {
+        ...state.hostStepperForm,
+        apartment: {
+          ...state.hostStepperForm.apartment,
+          [field.name]: field.value,
+        },
       },
     })),
 });
