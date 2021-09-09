@@ -9,7 +9,6 @@ const checkStepperData = (step, data) => {
         return false;
       break;
     case 1:
-      console.log('2nd step');
       break;
     default:
   }

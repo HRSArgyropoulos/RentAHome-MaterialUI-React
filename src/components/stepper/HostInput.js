@@ -40,9 +40,9 @@ const HostInput = () => {
           color="primary"
           variant="outlined"
           onClick={async () => {
+            // check and get name of host with that id
             const host = await getHost(hostStepperForm.hostId);
             const hostData = host.data.host;
-            console.log(hostData);
             if (hostData) {
               changeHostStepperInput({
                 name: 'hostName',
@@ -51,6 +51,16 @@ const HostInput = () => {
               changeHostStepperInput({
                 name: 'hostFound',
                 value: true,
+              });
+            } else {
+              // no user found reset found and name fields
+              changeHostStepperInput({
+                name: 'hostName',
+                value: '',
+              });
+              changeHostStepperInput({
+                name: 'hostFound',
+                value: false,
               });
             }
           }}>
