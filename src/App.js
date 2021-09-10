@@ -7,6 +7,7 @@ import {
 import Navbar from './components/Navbar';
 import Home from './components/Home';
 import Rent from './components/Rent';
+import Host from './components/core/Host';
 
 function App() {
   return (
@@ -21,7 +22,9 @@ function App() {
             <Route path="/to-rent">
               <Rent />
             </Route>
-            <Route path="/to-host">To Host</Route>
+            <Route path="/to-host">
+              <Host />
+            </Route>
             <Route path="/about">About</Route>
             <Route path="/contact-us">Contact Us</Route>
           </Switch>
