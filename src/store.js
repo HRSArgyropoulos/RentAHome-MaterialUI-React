@@ -65,6 +65,7 @@ const bookingStore = (set) => ({
       spacing: '',
       price: '',
       availableDates: [],
+      availableDatesInput: '',
     },
   },
   changeStepStatus: (step) =>

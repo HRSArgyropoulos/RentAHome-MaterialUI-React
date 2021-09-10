@@ -1,4 +1,4 @@
-import { React, useEffect, useState } from 'react';
+import { React, useEffect } from 'react';
 import useStore from '../../store';
 import {
   TextField,
@@ -72,23 +72,31 @@ const PropertyInput = () => {
     });
   };
 
-  // handle available dates input state
-  const [availableDates, setAvailableDates] = useState('');
-
-  const handleDatesForm = (e) => {
-    setAvailableDates(e.target.value);
-  };
-
   // update dates on store state after convertion
-  useEffect(() => {
-    const dateInput = availableDates.trim().split(',');
-    console.log(dateInput);
-    // update store
-    changeFormApartment({
+  //useEffect(() => {
+  //const dateInput = availableDates.trim().split(/\s*,\s*/);
+  // update store
+  /* changeFormApartment({
       name: 'availableDates',
       value: dateInput,
     });
-  }, [availableDates, changeFormApartment]);
+  }, [availableDates, changeFormApartment]); */
+
+  const handleDatesForm = (e) => {
+    // update store dates input
+    handleFormChange({
+      target: {
+        name: 'availableDatesInput',
+        value: e.target.value,
+      },
+    });
+    // create array of dates based on regex
+    const datesArray = e.target.value.trim().split(/\s*,\s*/);
+    // update store with dates array
+    handleFormChange({
+      target: { name: e.target.name, value: datesArray },
+    });
+  };
 
   const theme = useTheme();
   const classes = useStyles(theme);
@@ -191,7 +199,7 @@ const PropertyInput = () => {
             label="Available Dates"
             placeholder="DD-MM-YYYY seperated by ,"
             name="availableDates"
-            value={availableDates}
+            value={apartmentFormData.availableDatesInput}
             onChange={handleDatesForm}
           />
         </div>

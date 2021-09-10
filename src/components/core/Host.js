@@ -4,7 +4,6 @@ import { makeStyles } from '@material-ui/styles';
 import useStore from '../../store';
 import StepperFormContent from '../StepperFormContent';
 import { checkStepperData } from '../stepper/stepperActionsButton';
-import StepperSummary from '../stepper/StepperSummary';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -71,7 +70,6 @@ const Host = () => {
           </div>
         )}
       </div>
-      <StepperSummary />
     </div>
   );
 };

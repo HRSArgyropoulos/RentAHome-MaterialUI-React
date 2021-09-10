@@ -1,7 +1,7 @@
 import React from 'react';
 import HostInput from './stepper/HostInput';
 import PropertyInput from './stepper/PropertyInput';
-import ReviewInput from './stepper/ReviewInput';
+import StepperSummary from './stepper/StepperSummary';
 
 const StepperFormContent = (props) => {
   const { index } = props;
@@ -9,7 +9,7 @@ const StepperFormContent = (props) => {
     <>
       {index === 0 && <HostInput />}
       {index === 1 && <PropertyInput />}
-      {index === 2 && <ReviewInput />}
+      {index === 2 && <StepperSummary />}
     </>
   );
 };
