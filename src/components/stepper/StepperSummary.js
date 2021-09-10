@@ -17,9 +17,9 @@ const useStyles = makeStyles({
   table: {
     margin: '1rem 0',
     '& .MuiTableHead-root .MuiTableCell-root': {
-      width: '150px',
+      width: '50%',
     },
-    /* minWidth: 650, */
+    minWidth: 300,
   },
   property: {
     marginRight: '1rem',
@@ -49,13 +49,11 @@ const StepperSummary = () => {
           <TableBody>
             <TableRow>
               <TableCell>ID</TableCell>
-              <TableCell align="center">{formData.hostId}</TableCell>
+              <TableCell>{formData.hostId}</TableCell>
             </TableRow>
             <TableRow>
               <TableCell>Name</TableCell>
-              <TableCell align="center">
-                {formData.hostName}
-              </TableCell>
+              <TableCell>{formData.hostName}</TableCell>
             </TableRow>
           </TableBody>
         </Table>
@@ -78,7 +76,7 @@ const StepperSummary = () => {
                   <TableCell>
                     {capitalizeFirstLetter(property)}
                   </TableCell>
-                  <TableCell align="center">
+                  <TableCell>
                     {property === 'availableDates'
                       ? apartmentData[property].join(', ')
                       : apartmentData[property]}
