@@ -4,6 +4,7 @@ import { makeStyles } from '@material-ui/styles';
 import useStore from '../../store';
 import StepperFormContent from '../StepperFormContent';
 import { checkStepperData } from '../stepper/stepperActionsButton';
+import { saveApartment } from '../../services/apartment';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -59,13 +60,25 @@ const Host = () => {
             <Button
               variant="contained"
               color="primary"
-              onClick={() => {
+              onClick={async () => {
                 // button does validation depending on the step we currently at
                 // if ok go to next step (index)
-                if (checkStepperData(activeStep, hostStepperForm))
+                if (checkStepperData(activeStep, hostStepperForm)) {
+                  // submit button -> save apartment to db
+                  if (activeStep === 2) {
+                    const { data, err } = await saveApartment(
+                      hostStepperForm.apartment,
+                      {
+                        hostId: hostStepperForm.hostId,
+                        hostName: hostStepperForm.hostName,
+                      }
+                    );
+                    console.log(data, err);
+                  }
                   nextStep();
+                }
               }}>
-              {activeStep < stepLabels.length - 1 ? 'Next' : 'Finish'}
+              {activeStep < stepLabels.length - 1 ? 'Next' : 'Submit'}
             </Button>
           </div>
         )}

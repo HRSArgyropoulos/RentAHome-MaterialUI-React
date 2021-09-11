@@ -72,16 +72,6 @@ const PropertyInput = () => {
     });
   };
 
-  // update dates on store state after convertion
-  //useEffect(() => {
-  //const dateInput = availableDates.trim().split(/\s*,\s*/);
-  // update store
-  /* changeFormApartment({
-      name: 'availableDates',
-      value: dateInput,
-    });
-  }, [availableDates, changeFormApartment]); */
-
   const handleDatesForm = (e) => {
     // update store dates input
     handleFormChange({
@@ -197,7 +187,7 @@ const PropertyInput = () => {
             variant="outlined"
             id="availableDates"
             label="Available Dates"
-            placeholder="DD-MM-YYYY seperated by ,"
+            placeholder="YYYY-MM-DD seperated by ,"
             name="availableDates"
             value={apartmentFormData.availableDatesInput}
             onChange={handleDatesForm}
