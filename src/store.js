@@ -93,6 +93,8 @@ const bookingStore = (set) => ({
         },
       },
     })),
+  apartmentSavedStatus: false,
+  saveApartment: () => set(() => ({ apartmentSavedStatus: true })),
 });
 
 const useStore = create(devtools(bookingStore));
