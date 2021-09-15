@@ -9,6 +9,10 @@ import { saveApartment } from '../../services/apartment';
 const useStyles = makeStyles((theme) => ({
   root: {
     width: '100%',
+    margin: '3rem 0',
+  },
+  stepperActionButtons: {
+    margin: '1rem 0',
   },
 }));
 
@@ -28,8 +32,6 @@ const Host = () => {
   const resetStepper = useStore((state) => state.resetStepper);
 
   const hostStepperForm = useStore((state) => state.hostStepperForm);
-
-  /* const moveStepper = useStore((state) => state.moveStepper); */
 
   return (
     <div className={classes.root}>
@@ -54,32 +56,36 @@ const Host = () => {
         ) : (
           <div>
             <StepperFormContent index={activeStep} />
-            <Button disabled={!activeStep} onClick={backStep}>
-              Back
-            </Button>
-            <Button
-              variant="contained"
-              color="primary"
-              onClick={async () => {
-                // button does validation depending on the step we currently at
-                // if ok go to next step (index)
-                if (checkStepperData(activeStep, hostStepperForm)) {
-                  // submit button -> save apartment to db
-                  if (activeStep === 2) {
-                    const { data, err } = await saveApartment(
-                      hostStepperForm.apartment,
-                      {
-                        hostId: hostStepperForm.hostId,
-                        hostName: hostStepperForm.hostName,
-                      }
-                    );
-                    console.log(data, err);
+            <div className={classes.stepperActionButtons}>
+              <Button disabled={!activeStep} onClick={backStep}>
+                Back
+              </Button>
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={async () => {
+                  // button does validation depending on the step we currently at
+                  // if ok go to next step (index)
+                  if (checkStepperData(activeStep, hostStepperForm)) {
+                    // submit button -> save apartment to db
+                    if (activeStep === 2) {
+                      const { data, err } = await saveApartment(
+                        hostStepperForm.apartment,
+                        {
+                          hostId: hostStepperForm.hostId,
+                          hostName: hostStepperForm.hostName,
+                        }
+                      );
+                      console.log(data, err);
+                    }
+                    nextStep();
                   }
-                  nextStep();
-                }
-              }}>
-              {activeStep < stepLabels.length - 1 ? 'Next' : 'Submit'}
-            </Button>
+                }}>
+                {activeStep < stepLabels.length - 1
+                  ? 'Next'
+                  : 'Submit'}
+              </Button>
+            </div>
           </div>
         )}
       </div>

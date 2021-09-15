@@ -13,7 +13,7 @@ import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 const theme = createTheme({
   palette: {
     primary: {
-      main: '#c585f7',
+      main: '#37185a',
     },
   },
 });
@@ -35,8 +35,6 @@ function App() {
               <Route path="/to-host">
                 <Host />
               </Route>
-              <Route path="/about">About</Route>
-              <Route path="/contact-us">Contact Us</Route>
             </Switch>
           </div>
         </Router>

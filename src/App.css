@@ -63,7 +63,8 @@ a {
 }
 
 .activeMenu {
-  text-decoration: 2px black underline;
+  font-weight: bold;
+  color: #37185a;
 }
 
 .MuiButton-label a {

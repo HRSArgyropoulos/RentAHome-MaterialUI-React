@@ -27,6 +27,7 @@ const useStyles = makeStyles({
     display: 'flex',
     width: '100%',
     justifyContent: 'center',
+    fontFamily: 'Poppins, sans-serif',
   },
 });
 
@@ -58,19 +59,7 @@ const Navbar = () => {
                 Host your home
               </NavLink>
             </li>
-            <li>
-              <NavLink to="/about" activeClassName="activeMenu">
-                About
-              </NavLink>
-            </li>
           </ul>
-        </li>
-        <li>
-          <NavLink to="/contact-us">
-            <Button variant="contained" color="primary">
-              Contact Us
-            </Button>
-          </NavLink>
         </li>
       </ul>
     </nav>
