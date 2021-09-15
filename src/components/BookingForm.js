@@ -15,7 +15,7 @@ import useStore from '../store';
 
 const useStyles = makeStyles((theme) => ({
   form: {
-    width: '70%',
+    width: '85%',
     margin: '0 auto',
     '& .MuiTextField-root': {
       margin: theme.spacing(1),
@@ -24,11 +24,20 @@ const useStyles = makeStyles((theme) => ({
       position: 'relative',
       bottom: 0,
     },
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexWrap: 'wrap',
   },
   input: {
     '&::placeholder': {
       fontSize: '0.9em',
     },
+  },
+  button: {
+    marginLeft: '2rem',
+    position: 'relative',
+    bottom: '-5px',
   },
 }));
 
@@ -161,6 +170,7 @@ const BookingForm = () => {
         </Select>
       </FormControl>
       <Button
+        className={classes.button}
         color="primary"
         variant="contained"
         type="submit"
