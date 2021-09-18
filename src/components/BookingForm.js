@@ -86,6 +86,7 @@ const BookingForm = () => {
 
   useEffect(() => {
     const fetchApartments = async () => {
+      updateResultsState('loading');
       const response = await getApartments(
         location,
         checkIn,

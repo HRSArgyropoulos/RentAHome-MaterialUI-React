@@ -2,31 +2,33 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import logo from '../assets/logoHome.svg';
-import { Button } from '@material-ui/core';
 
 const useStyles = makeStyles({
   navbar: {
-    height: '120px',
-    display: 'grid',
-    gridTemplateColumns: '1fr 2fr 1fr',
-    maxWidth: '1650px',
-    margin: '0 auto',
+    height: '85px',
+    display: 'flex',
+    maxWidth: '1400px',
+    backgroundColor: 'rgba(255,255,255,0.4)',
+    borderRadius: '50px',
+    margin: '1rem auto',
     alignItems: 'center',
+    justifyContent: 'space-between',
     listStyle: 'none',
-    padding: '0.5rem 0',
+    padding: '0.5rem 1rem',
+    backdropFilter: 'blur(20px)',
     fontFamily: 'Righteous, cursive',
     fontSize: '1.1em',
     '& li': {
       padding: '0.5rem 1rem',
     },
     '& img': {
-      width: '45px',
+      width: '30px',
     },
   },
   navlinks: {
     display: 'flex',
     width: '100%',
-    justifyContent: 'center',
+    flexWrap: 'wrap',
     fontFamily: 'Poppins, sans-serif',
   },
 });

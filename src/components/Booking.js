@@ -4,6 +4,7 @@ import BookingForm from './BookingForm';
 import BookingResults from './BookingResults';
 import BookingFilters from './BookingFilters';
 import useStore from '../store';
+import LoadingSpinner from './LoadingSpinner';
 
 const useStyles = makeStyles({
   root: {
@@ -27,6 +28,7 @@ const Booking = () => {
         <h2 style={{ padding: 0 }}>Book your stay</h2>
         <BookingForm />
       </div>
+      <LoadingSpinner state={resultsState} />
       {resultsState === 'data' && (
         <Grid container spacing={4} className={classes.results}>
           <Grid item md={3} xs={12}>
